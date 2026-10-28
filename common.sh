@@ -94,6 +94,21 @@ SYSTEMD_SETUP_START(){
     OUTPUT_VALIDATION $? "Enabling and Restarting $APP_NAME.service"
 }
 
+NGINX_INSTALLATION(){
+    dnf module disable nginx -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Disabling default nginx"
+
+    dnf module enable nginx:1.24 -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Enabling 1.24 nginx"
+
+    dnf install nginx -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing nginx"
+
+    systemctl enable nginx
+    systemctl start nginx
+    OUTPUT_VALIDATION $? "Starting nginx"
+}
+
 TIME_TAKEN()
 {
     END_TIME=$(date +%s)
