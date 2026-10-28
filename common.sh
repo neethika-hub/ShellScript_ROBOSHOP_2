@@ -35,18 +35,18 @@ ROOT_VALIDATION(){
 }
 
 MONGODB_INSTALLATION(){
-    cp $SCRIPT_PATH/mongo.conf /etc/yum.repos.d/mongo.conf
+    cp $SCRIPT_PATH/mongo.conf /etc/yum.repos.d/mongo.repo
     OUTPUT_VALIDATION $? "Copying MONGODB repo"
 
-    dnf install mongodb-org -y 
-    echo $?
+    dnf install mongodb-org -y &>>OUTPUT_LOG
     OUTPUT_VALIDATION $? "Installing MONGODB"
 
-    systemctl enable mongodb
-    systemctl start mongodb
+    systemctl enable mongod
+    systemctl start mongod
     OUTPUT_VALIDATION $? "Starting MONGODB"
 
     sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+    OUTPUT_VALIDATION $? "Updating the Address in mongod.conf file"
     systemctl restart mongodb
 }
 
