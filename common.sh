@@ -47,7 +47,7 @@ MONGODB_INSTALLATION(){
 
     sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
     OUTPUT_VALIDATION $? "Updating the Address in mongod.conf file"
-    systemctl restart mongodb
+    systemctl restart mongod
 }
 
 
