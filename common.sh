@@ -38,7 +38,8 @@ MONGODB_INSTALLATION(){
     cp $SCRIPT_PATH/mongo.conf /etc/yum.repos.d/mongo.conf
     OUTPUT_VALIDATION $? "Copying MONGODB repo"
 
-    dnf install mongodb-org -y &>>$OUTPUT_LOG
+    dnf install mongodb-org -y 
+    echo $?
     OUTPUT_VALIDATION $? "Installing MONGODB"
 
     systemctl enable mongodb

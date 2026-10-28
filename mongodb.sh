@@ -1,7 +1,5 @@
 #!/bin/bash
 
 source ./common.sh
-
 ROOT_VALIDATION
-
 MONGODB_INSTALLATION
