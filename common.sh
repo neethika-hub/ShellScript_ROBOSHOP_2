@@ -12,9 +12,9 @@ START_TIME=$(date +%s)
 OUTPUT_VALIDATION(){
     if [ $1 -eq 0 ]
     then
-        echo "$2 is SUCCESS"
-    else
-        echo "$2 is FAILED"
+        echo "$2 is SUCCESS" | tee -a $OUTPUT_LOG
+    else 
+        echo "$2 is FAILED" | tee -a $OUTPUT_LOG
         exit 1
     fi
 }
@@ -26,7 +26,7 @@ OUTPUT_VALIDATION $? "Creating log folder '$LOG_FOLDER'"
 ROOT_VALIDATION(){
     if [ $USER_ID -ne 0 ]
     then
-        echo "Please run the script with root..ERROR"
+        echo "Please run the script with root..ERROR" | tee -a $OUTPUT_LOG
         exit 1
     else
         echo "You are in ROOT!! Continue with next steps.."
@@ -38,7 +38,7 @@ MONGODB_INSTALLATION(){
     cp $SCRIPT_PATH/mongo.conf /etc/yum.repos.d/mongo.conf
     OUTPUT_VALIDATION $? "Copying MONGODB repo"
 
-    dnf install mongodb-org -y
+    dnf install mongodb-org -y &>>$OUTPUT_LOG
     OUTPUT_VALIDATION $? "Installing MONGODB"
 
     systemctl enable mongodb
