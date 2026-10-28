@@ -38,7 +38,7 @@ MONGODB_INSTALLATION(){
     cp $SCRIPT_PATH/mongo.conf /etc/yum.repos.d/mongo.repo
     OUTPUT_VALIDATION $? "Copying MONGODB repo"
 
-    dnf install mongodb-org -y &>>OUTPUT_LOG
+    dnf install mongodb-org -y &>>$OUTPUT_LOG
     OUTPUT_VALIDATION $? "Installing MONGODB"
 
     systemctl enable mongod
@@ -59,7 +59,7 @@ APP_CONFIGURATION(){
         useradd --system --home /app --shell /sbin/nologin --comment "Roboshop System User" roboshop
         OUTPUT_VALIDATION $? "Roboshop System User Creation"
     else
-        echo "Roboshop System user is already Present"
+        echo "Roboshop System user is already Present" | tee -a $OUTPUT_LOG
     fi
     cd /app
     rm -rf *
@@ -98,7 +98,7 @@ TIME_TAKEN()
 {
     END_TIME=$(date +%s)
     TOTAL_TIME=$(($END_TIME - $START_TIME))
-    echo "Script completed in: $TOTAL_TIME ms"
+    echo "Script completed in: $TOTAL_TIME ms" | tee -a $OUTPUT_LOG
 }
 
 
