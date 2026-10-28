@@ -7,7 +7,7 @@ ROOT_VALIDATION
 APP_CONFIGURATION
 NODEJS_INSTALLATION
 
-cp $SCRIPT_PATH/mongo.conf /etc/yum.repos.d.mongod.repo
+cp $SCRIPT_PATH/mongo.conf /etc/yum.repos.d/mongod.repo
 OUTPUT_VALIDATION $? "Copying MONGO Repo"
 
 dnf install mongodb-mongosh -y &>>$OUTPUT_LOG
