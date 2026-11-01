@@ -150,6 +150,7 @@ NODEJS_PIDCHECK(){
         echo "No ERRORS in nodejs logs" | tee -a $OUTPUT_LOG
     else
         echo "There are errors in logs. PLEASE CHECK" | tee -a $OUTPUT_LOG
+        echo "Restarted the applciation if required" | tee -a $OUTPUT_LOG
     fi
     
 }
