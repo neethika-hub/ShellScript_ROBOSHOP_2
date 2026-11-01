@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ./common.sh
+APP_NAME=frontend
 
 ROOT_VALIDATION
 NGINX_INSTALLATION
