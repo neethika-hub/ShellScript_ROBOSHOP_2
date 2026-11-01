@@ -134,6 +134,26 @@ MONGODB_PIDCHECK(){
     fi
 }
 
+NODEJS_PIDCHECK(){
+    NODEJS_PID=$(ps -ef | grep /app/server.js | grep -v grep | awk '{print $2}')
+    NODEJS_PID_COUNT=$(ps -ef | grep /app/server.js | grep -v grep | awk '{print $2}' | wc -l)
+    NODEJS_ERROR_COUNT=$(grep -i "ERROR" /var/log/messages | wc -l)
+    echo $NODEJS_PID
+    if [$NODEJS_PID_COUNT == 1 ]
+    then
+        echo "NODEJS is Started with PID:$NODEJS_PID" | tee -a $OUTPUT_LOG
+    else
+        echo "NODEJS is not started" | tee -a $OUTPUT_LOG
+    fi
+    if [ $NODEJS_ERROR_COUNT == 0 ]
+    then   
+        echo "No ERRORS in nodejs logs" | tee -a $OUTPUT_LOG
+    else
+        echo "There are errors in logs. PLEASE CHECK" | tee -a $OUTPUT_LOG
+    fi
+    
+}
+
 
 
 
