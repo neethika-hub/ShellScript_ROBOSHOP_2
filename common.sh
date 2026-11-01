@@ -121,7 +121,7 @@ MONGODB_PIDCHECK(){
     PID_VALUE=$(ps -ef | grep /usr/bin/mongod | grep -v grep | awk '{print $2}')
     ERROR_COUNT=$(grep -i "ERROR" /var/log/messages | wc -l)
     echo $ERROR_COUNT
-    if [ $PID_NAME == "mongod" && $ERROR_COUNT == 0 ]
+    if [ $PID_NAME == "mongod" && [ $ERROR_COUNT == 0 ]
     then
         echo "MONGODB Started with PID:$PID_VALUE and No error in logs"
     else
