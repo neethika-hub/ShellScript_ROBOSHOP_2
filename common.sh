@@ -116,6 +116,17 @@ TIME_TAKEN()
     echo "Script completed in: $TOTAL_TIME ms" | tee -a $OUTPUT_LOG
 }
 
+MONGODB_PIDCHECK(){
+    PID_NAME=$(ps -ef | grep mongod | grep -v grep | awk '{print $1}')
+    PID_VALUE=$(ps -ef | grep mongod | grep -v grep | awk '{print $2}')
+    if [ $PID_NAME -eq mongod ]
+    then
+        echo "MONGODB Started with PID:$PID_VALUE"
+    else
+        echo "MONGODB is not Started"
+    fi
+}
+
 
 
 
