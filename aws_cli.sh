@@ -2,7 +2,8 @@
 
 AMI_ID="ami-0055977a6e828a4f4"
 SecurityGroup_ID="sg-0338f2fe5c729ee11"
-Instances=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "frontend")
+#Instances=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "frontend")
+Instances=$#
 HostedZone_ID="Z0234269167B6OYW6YW44"
 DNS_Name="shynudevops.shop"
 for instance in ${Instances[@]}
