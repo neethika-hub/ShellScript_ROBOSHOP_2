@@ -118,7 +118,9 @@ TIME_TAKEN()
 
 MONGODB_PIDCHECK(){
     PID_NAME=$(ps -ef | grep mongod | grep -v grep | awk '{print $1}')
+    echo $PID_NAME
     PID_VALUE=$(ps -ef | grep mongod | grep -v grep | awk '{print $2}')
+    echo $PID_VALUE
     if [ $PID_NAME == "mongod" ]
     then
         echo "MONGODB Started with PID:$PID_VALUE"
