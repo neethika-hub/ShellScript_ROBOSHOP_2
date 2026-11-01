@@ -139,7 +139,7 @@ NODEJS_PIDCHECK(){
     NODEJS_PID_COUNT=$(ps -ef | grep /app/server.js | grep -v grep | awk '{print $2}' | wc -l)
     NODEJS_ERROR_COUNT=$(grep -i "ERROR" /var/log/messages | wc -l)
     echo $NODEJS_PID
-    if [$NODEJS_PID_COUNT -eq 1 ]
+    if [ $NODEJS_PID_COUNT -eq 1 ]
     then
         echo "NODEJS is Started with PID:$NODEJS_PID" | tee -a $OUTPUT_LOG
     else
