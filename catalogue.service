@@ -5,7 +5,7 @@ Description="Catalogue Service"
 user=roboshop
 Environment=MONGO=true
 // highlight-start
-Environment=MONGO_URL="mongodb://<MONGODB-SERVER-IPADDRESS>:27017/catalogue"
+Environment=MONGO_URL="mongodb://mongodb.shynudevops.shop:27017/catalogue"
 // highlight-end
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=catalogue
