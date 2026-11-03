@@ -135,7 +135,7 @@ PIDCHECK(){
     echo $PID
     if [ $PID_COUNT -eq 1 ]
     then
-        echo "NODEJS is Started with PID:$NODEJS_PID" | tee -a $OUTPUT_LOG
+        echo "NODEJS is Started with PID:$PID" | tee -a $OUTPUT_LOG
     else
         echo "NODEJS is not started" | tee -a $OUTPUT_LOG
     fi
