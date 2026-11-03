@@ -1,0 +1,14 @@
+[Unit]
+Description=User Service
+
+[Service]
+user=roboshop
+Environment=MONGO=true
+Environment=REDIS_URL='redis://redis.shynudevops.shop:6379'
+Environment=MONGO_URL="mongodb://mongodb.shynudevops.shop:27017/users"
+ExecStart=/bin/node /app/server.js
+LogSysidentifier=user
+
+[Install]
+WantedBy=multi-user.target
+
