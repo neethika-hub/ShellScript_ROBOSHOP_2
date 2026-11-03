@@ -94,7 +94,7 @@ REDIS_INSTALLATION(){
     dnf install redis -y &>>$OUTPUT_LOG
     OUTPUT_VALIDATION $? "Installing REDIS"
 
-    sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c /protected-mode no/' /etc/redis/redis.conf
+    sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
     OUTPUT_VALIDATION $? "Updating redis configuration"
 
     systemctl enable redis 
