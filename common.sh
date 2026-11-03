@@ -130,10 +130,10 @@ NGINX_INSTALLATION(){
 }
 
 PIDCHECK(){
-    NODEJS_PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $1}')
-    NODEJS_PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
-    echo $NODEJS_PID
-    if [ $NODEJS_PID_COUNT -eq 1 ]
+    PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $1}')
+    PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
+    echo $PID
+    if [ $PID_COUNT -eq 1 ]
     then
         echo "NODEJS is Started with PID:$NODEJS_PID" | tee -a $OUTPUT_LOG
     else
@@ -141,6 +141,7 @@ PIDCHECK(){
     fi
     
 }
+
 ERRORLOG_CHECK(){
     ERROR_COUNT=$(grep -i "ERROR" /var/log/messages | wc -l)
     if [ $ERROR_COUNT -eq 0 ]
