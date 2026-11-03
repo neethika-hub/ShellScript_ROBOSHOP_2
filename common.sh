@@ -140,6 +140,16 @@ NODEJS_PIDCHECK(){
     
 }
 
+NGINX_PIDCHECK(){
+    NGINX_PID=$(ps -ef | grep /usr/sbin/nginx | grep -v grep | awk '{print $2}')
+    NGINX_PID_COUNT=$(ps -ef | grep /usr/sbin/nginx | grep -v grep | awk '{print $2}' | wc -l)
+    if [ $NGINX_PID_COUNT -eq 1 ]
+    then
+        echo "NGINX  is started with PID:$NGINX_PID" | tee -a $OUTPUT_LOG
+    else
+        echo "NGINX is not started" | tee -a $OUTPUT_LOG
+}
+
 ERRORLOG_CHECK(){
     ERROR_COUNT=$(grep -i "ERROR" /var/log/messages | wc -l)
     if [ $ERROR_COUNT -eq 0 ]
