@@ -130,8 +130,7 @@ NGINX_INSTALLATION(){
 }
 
 PIDCHECK(){
-    echo $PID_VALIDATION
-    PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $1}')
+    PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}')
     PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
     echo $PID
     if [ $PID_COUNT -eq 1 ]
