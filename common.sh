@@ -148,6 +148,7 @@ NGINX_PIDCHECK(){
         echo "NGINX  is started with PID:$NGINX_PID" | tee -a $OUTPUT_LOG
     else
         echo "NGINX is not started" | tee -a $OUTPUT_LOG
+    fi
 }
 
 ERRORLOG_CHECK(){
