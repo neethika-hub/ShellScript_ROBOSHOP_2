@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source ./common.sh
+APP_NAME="Redis"
+
+ROOT_VALIDATION
+REDIS_INSTALLATION
+ERRORLOG_CHECK
+TIME_TAKEN
+

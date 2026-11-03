@@ -84,6 +84,25 @@ NODEJS_INSTALLATION(){
     
 }
 
+REDIS_INSTALLATION(){
+    dnf module disable redis -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Diabling default REDIS"
+
+    dnf module enable redis:7 -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Enabling REDIS 7"
+
+    dnf install redis -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing REDIS"
+
+    sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c /protected-mode no/' /etc/redis/redis.conf
+    OUTPUT_VALIDATION $? "Updating redis configuration"
+
+    systemctl enable redis 
+    systemctl start redis 
+    OUTPUT_VALIDATION $? "Starting REDIS"
+
+}
+
 SYSTEMD_SETUP_START(){
     cp $SCRIPT_PATH/$APP_NAME.service /etc/systemd/system/$APP_NAME.service
     OUTPUT_VALIDATION $? "Copying Service Configuration File"
