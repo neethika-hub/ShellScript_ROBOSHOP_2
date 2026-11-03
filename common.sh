@@ -129,6 +129,22 @@ NGINX_INSTALLATION(){
     OUTPUT_VALIDATION $? "Starting nginx"
 }
 
+MYSQL_INSTALLATION(){
+
+    echo "Enter the password"
+    read -s MySQL_PASSWORD
+    dnf install mysql-server -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing MySQL"
+
+    systemctl enable mysqld
+    systemctl start mysqld
+    OUTPUT_VALIDATION $? "Starting MySQL"
+
+    mysql_secure_installation --set-root-pass $MySQL_PASSWORD
+    OUTPUT_VALIDATION $? "Updating ROOT password for MySQL"
+
+}
+
 PIDCHECK(){
     PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}')
     PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
