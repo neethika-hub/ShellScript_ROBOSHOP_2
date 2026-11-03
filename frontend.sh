@@ -23,7 +23,7 @@ OUTPUT_VALIDATION $? "Copying nginx configuration"
 systemctl restart nginx
 OUTPUT_VALIDATION $? "Restarting nginx"
 
-NGINX_PIDCHECK
+PIDCHECK
 ERRORLOG_CHECK
 
 TIME_TAKEN
