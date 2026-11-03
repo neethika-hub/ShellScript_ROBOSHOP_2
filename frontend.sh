@@ -2,7 +2,7 @@
 
 source ./common.sh
 APP_NAME=frontend
-
+PID_VALIDATION="/usr/sbin/nginx"
 ROOT_VALIDATION
 NGINX_INSTALLATION
 

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 source ./common.sh
+APP_NAME="mongodb"
+PID_VALIDATION="/usr/bin/mongod"
 ROOT_VALIDATION
 MONGODB_INSTALLATION
 MONGODB_PIDCHECK

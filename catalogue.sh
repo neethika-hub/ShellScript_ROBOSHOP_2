@@ -2,7 +2,7 @@
 
 source ./common.sh
 APP_NAME=catalogue
-
+PID_VALIDATION="/app/server.js"
 ROOT_VALIDATION
 APP_CONFIGURATION
 NODEJS_INSTALLATION

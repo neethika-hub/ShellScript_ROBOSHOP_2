@@ -8,6 +8,7 @@ SCRIPT_PATH=$PWD
 START_TIME=$(date +%s)
 
 
+
 #Validates if the commands executed are success or failed
 OUTPUT_VALIDATION(){
     if [ $1 -eq 0 ]
@@ -128,27 +129,9 @@ NGINX_INSTALLATION(){
     OUTPUT_VALIDATION $? "Starting nginx"
 }
 
-TIME_TAKEN()
-{
-    END_TIME=$(date +%s)
-    TOTAL_TIME=$(($END_TIME - $START_TIME))
-    echo "Script completed in: $TOTAL_TIME ms" | tee -a $OUTPUT_LOG
-}
-
-MONGODB_PIDCHECK(){
-    PID_NAME=$(ps -ef | grep /usr/bin/mongod | grep -v grep | awk '{print $1}')
-    PID_VALUE=$(ps -ef | grep /usr/bin/mongod | grep -v grep | awk '{print $2}')
-    if [ $PID_NAME == "mongod" ] 
-    then
-        echo "MONGODB Started with PID:$PID_VALUE" | tee -a $OUTPUT_LOG
-    else
-        echo "MONGODB is not Started" | tee -a $OUTPUT_LOG
-    fi
-}
-
-NODEJS_PIDCHECK(){
-    NODEJS_PID=$(ps -ef | grep /app/server.js | grep -v grep | awk '{print $2}')
-    NODEJS_PID_COUNT=$(ps -ef | grep /app/server.js | grep -v grep | awk '{print $2}' | wc -l)
+PIDCHECK(){
+    NODEJS_PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $1}')
+    NODEJS_PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
     echo $NODEJS_PID
     if [ $NODEJS_PID_COUNT -eq 1 ]
     then
@@ -158,27 +141,22 @@ NODEJS_PIDCHECK(){
     fi
     
 }
-
-NGINX_PIDCHECK(){
-    NGINX_PID=$(ps -ef | grep /usr/sbin/nginx | grep -v grep | awk '{print $2}')
-    NGINX_PID_COUNT=$(ps -ef | grep /usr/sbin/nginx | grep -v grep | awk '{print $2}' | wc -l)
-    if [ $NGINX_PID_COUNT -eq 1 ]
-    then
-        echo "NGINX  is started with PID:$NGINX_PID" | tee -a $OUTPUT_LOG
-    else
-        echo "NGINX is not started" | tee -a $OUTPUT_LOG
-    fi
-}
-
 ERRORLOG_CHECK(){
     ERROR_COUNT=$(grep -i "ERROR" /var/log/messages | wc -l)
     if [ $ERROR_COUNT -eq 0 ]
     then   
         echo "No ERRORS in $APP_NAME logs" | tee -a $OUTPUT_LOG
     else
-        echo "There are errors in logs. PLEASE CHECK" | tee -a $OUTPUT_LOG
-        echo "Restarted the applciation if required" | tee -a $OUTPUT_LOG
+        echo "There are errors in $APP_NAME logs. PLEASE CHECK" | tee -a $OUTPUT_LOG
+        echo "Restarted the applciation:$APP_NAME if required" | tee -a $OUTPUT_LOG
     fi
+}
+
+TIME_TAKEN()
+{
+    END_TIME=$(date +%s)
+    TOTAL_TIME=$(($END_TIME - $START_TIME))
+    echo "Script completed in: $TOTAL_TIME ms" | tee -a $OUTPUT_LOG
 }
 
 

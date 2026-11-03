@@ -2,7 +2,7 @@
 
 source ./common.sh
 APP_NAME="Redis"
-
+PID_VALIDATION="/usr/bin/redis-server"
 ROOT_VALIDATION
 REDIS_INSTALLATION
 ERRORLOG_CHECK
