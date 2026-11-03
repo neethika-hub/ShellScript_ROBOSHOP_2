@@ -5,6 +5,7 @@ APP_NAME=frontend
 
 ROOT_VALIDATION
 NGINX_INSTALLATION
+ERRORLOG_CHECK
 
 cd /usr/share/nginx/html
 rm -rf *
@@ -21,3 +22,5 @@ OUTPUT_VALIDATION $? "Copying nginx configuration"
 
 systemctl restart nginx
 OUTPUT_VALIDATION $? "Restarting nginx"
+
+TIME_TAKEN
