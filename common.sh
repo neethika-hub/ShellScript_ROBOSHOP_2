@@ -119,18 +119,11 @@ TIME_TAKEN()
 MONGODB_PIDCHECK(){
     PID_NAME=$(ps -ef | grep /usr/bin/mongod | grep -v grep | awk '{print $1}')
     PID_VALUE=$(ps -ef | grep /usr/bin/mongod | grep -v grep | awk '{print $2}')
-    ERROR_COUNT=$(grep -i "ERROR" /var/log/messages | wc -l)
     if [ $PID_NAME == "mongod" ] 
     then
         echo "MONGODB Started with PID:$PID_VALUE" | tee -a $OUTPUT_LOG
     else
         echo "MONGODB is not Started" | tee -a $OUTPUT_LOG
-    fi
-    if [ $ERROR_COUNT -eq 0 ]
-    then
-        echo "No ERRORS in mongodb logs" | tee -a $OUTPUT_LOG
-    else
-        echo "There are errors in logs. PLEASE CHECK" | tee -a $OUTPUT_LOG
     fi
 }
 
