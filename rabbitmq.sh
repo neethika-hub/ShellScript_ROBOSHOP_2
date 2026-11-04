@@ -2,7 +2,7 @@
 
 source ./common.sh
 APP_NAME=rabbitmq
-PID_VALIDATION="/usr/sbin/rabbitmq"
+PID_VALIDATION="/bin/beam.smp"
 echo "Enter password"
 read -s RABBITMQ_PASSWORD
 ROOT_VALIDATION
