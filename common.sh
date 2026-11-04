@@ -182,6 +182,17 @@ PYTHON_INSTALLATION(){
     OUTPUT_VALIDATION $? "Installing dependencies"
 }
 
+GOLANG_INSTALLATION(){
+    dnf install golang -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing GO LANG"
+
+    cd /app
+    go mod init $APP_NAME
+    go get
+    go build
+    OUTPUT_VALIDATION $? "Building dependencies"
+}
+
 PIDCHECK(){
     PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | head -1 | awk '{print $2}')
     PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | head -1 | awk '{print $2}' | wc -l)
