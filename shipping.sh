@@ -2,11 +2,12 @@
 
 source ./common.sh
 APP_NAME=shipping
-PID_VALIDATION="/app/shipping-1.0.jar"
+PID_VALIDATION="/app/shipping.jar"
 echo "Enter password for MySQL"
 read -s MYSQL_PASSWORD
 ROOT_VALIDATION
 APP_CONFIGURATION
+MAVEN_INSTALLATION
 MAVEN_INSTALLATION
 SYSTEMD_SETUP_START
 
