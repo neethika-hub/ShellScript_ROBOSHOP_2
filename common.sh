@@ -146,7 +146,7 @@ MYSQL_INSTALLATION(){
 }
 
 MAVEN_INSTALLATION(){
-    dnf install maven -y | tee -a $OUTPUT_LOG
+    dnf install maven -y &>>$OUTPUT_LOG
     OUTPUT_VALIDATION $? "Installing Maven"
 
     cd /app
