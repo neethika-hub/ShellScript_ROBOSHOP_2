@@ -2,7 +2,7 @@
 
 source ./common.sh
 APP_NAME=payment
-PID_VALIDATION="/app/payment.ini"
+PID_VALIDATION="payment.ini"
 ROOT_VALIDATION
 APP_CONFIGURATION
 PYTHON_INSTALLATION
