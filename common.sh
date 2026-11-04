@@ -157,6 +157,22 @@ MAVEN_INSTALLATION(){
     OUTPUT_VALIDATION $? "Updating jar name"
 }
 
+RABBITMQ_INSTALLATION(){
+    cp $SCRIPT_PATH/$APP_NAME.repo /etc/yum.repos.d/$APP_NAME.repo
+    OUTPUT_VALIDATION $? "Copying rabbit mq repo"
+    
+    dnf install rabbitmq-server -y &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing RABBITMQ"
+
+    systemctl enable rabbitmq-server
+    systemctl start rabbitmq-server
+    OUTPUT_VALIDATION $? "Starting RABBITMQ"
+
+    rabbitmqctl add_user roboshop $RABBITMQ_PASSWORD
+    rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+    OUTPUT_VALIDATION $? "Adding user and permissions"
+}
+
 PIDCHECK(){
     PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}')
     PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
