@@ -174,7 +174,7 @@ RABBITMQ_INSTALLATION(){
 }
 
 PYTHON_INSTALLATION(){
-    dnf install python3 gcc python3-devel -y | tee -a $OUTPUT_LOG
+    dnf install python3 gcc python3-devel -y &>>$OUTPUT_LOG
     OUTPUT_VALIDATION $? "Installing Python3"
 
     cd /app
