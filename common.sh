@@ -145,6 +145,18 @@ MYSQL_INSTALLATION(){
 
 }
 
+MAVEN_INSTALLATION(){
+    dnf install maven -y | tee -a $OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing Maven"
+
+    cd /app
+    mvn clean package &>>$OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing Dependencies"
+
+    mv target/shipping-1.0.jar shipping.jar
+    OUTPUT_VALIDATION $? "Updating jar name"
+}
+
 PIDCHECK(){
     PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}')
     PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
