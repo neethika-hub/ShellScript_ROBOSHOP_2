@@ -173,6 +173,15 @@ RABBITMQ_INSTALLATION(){
     OUTPUT_VALIDATION $? "Adding user and permissions"
 }
 
+PYTHON_INSTALLATION(){
+    dnf install python3 gcc python3-devel -y | tee -a $OUTPUT_LOG
+    OUTPUT_VALIDATION $? "Installing Python3"
+
+    cd /app
+    pip3 install -r requirements.txt
+    OUTPUT_VALIDATION $? "Installing dependencies"
+}
+
 PIDCHECK(){
     PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}')
     PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
