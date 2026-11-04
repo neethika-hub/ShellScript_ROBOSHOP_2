@@ -183,8 +183,8 @@ PYTHON_INSTALLATION(){
 }
 
 PIDCHECK(){
-    PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}')
-    PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | awk '{print $2}' | wc -l)
+    PID=$(ps -ef | grep $PID_VALIDATION | grep -v grep | head -1 | awk '{print $2}')
+    PID_COUNT=$(ps -ef | grep $PID_VALIDATION | grep -v grep | head -1 | awk '{print $2}' | wc -l)
     echo $PID
     if [ $PID_COUNT -eq 1 ]
     then
