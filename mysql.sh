@@ -2,7 +2,7 @@
 
 source ./common.sh
 APP_NAME=mysql
-PID_VALIDATION="/usr/sbin/mysqld"
+PID_VALIDATION="/usr/libexec/mysqld"
 MYSQL_INSTALLATION
 PIDCHECK
 ERRORLOG_CHECK
