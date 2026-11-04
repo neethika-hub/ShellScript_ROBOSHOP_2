@@ -178,7 +178,7 @@ PYTHON_INSTALLATION(){
     OUTPUT_VALIDATION $? "Installing Python3"
 
     cd /app
-    pip3 install -r requirements.txt
+    pip3 install -r requirements.txt &>>$OUTPUT_LOG
     OUTPUT_VALIDATION $? "Installing dependencies"
 }
 
