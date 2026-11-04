@@ -151,9 +151,9 @@ PIDCHECK(){
     echo $PID
     if [ $PID_COUNT -eq 1 ]
     then
-        echo "NODEJS is Started with PID:$PID" | tee -a $OUTPUT_LOG
+        echo "$APP_NAME is Started with PID:$PID" | tee -a $OUTPUT_LOG
     else
-        echo "NODEJS is not started" | tee -a $OUTPUT_LOG
+        echo "$APP_NAME is not started" | tee -a $OUTPUT_LOG
     fi
     
 }
